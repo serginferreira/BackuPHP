@@ -8,8 +8,10 @@
 include_once("copiar.func.php");
 include_once("log.func.php");
 
+
 define('DIR_LOG',  'logs');
 define('DIR_DADOS','dados');
+define('DIR_ORIGEM', './DIRETÓRIO QUE VOCE DESEJA COPIAR'); #Deve ser alterado para diretório específico.
 
 
 function data($tipo){
@@ -99,12 +101,12 @@ function dumpSQL(){
     $password_conexao = "sua Senha"; 
     
     try {  
-        
+        #Path deve ser alterado...
         $path= "C:/wamp_server/bin/mysql/mysql5.7.14/bin/mysqldump.exe";
         
         $cmd = $path." -h ".$hostname_conexao." -u ".$username_conexao." ".$database_conexao." > ".DIR_DADOS."/".data("data")."/SQL/dump.sql -p".$password_conexao;
-        system($cmd); 
         
+        system($cmd);     
         gerarLog("ok", "[Backup SQL]: Sucesso no DumpSQL");    
     } 
     catch (Exception $erro)
@@ -115,20 +117,17 @@ function dumpSQL(){
     }
 }
 
-
-
 try {      
             #Verificar existência de Diretórios            
             verificarDiretorio(DIR_LOG);
             verificarDiretorio(DIR_DADOS);
             verificarDiretorio(DIR_DADOS."/".data("data"));
-            verificarDiretorio(DIR_DADOS."/".data("data")."/SQL");
-                        
+            verificarDiretorio(DIR_DADOS."/".data("data")."/SQL");                        
             verificarArquivoDiario(DIR_DADOS."/".data("data")."/status.dat");
     
-             #CAMINHO PARA REALIZAR BACKUP
-            copiar_diretorio("./DIRETÓRIO QUE VOCE DESEJA COPIAR", "./".DIR_DADOS."/".data('data')."/", true);
-            copiar_diretorio("../DIRETÓRIO QUE VOCE DESEJA COPIAR",    "./".DIR_DADOS."/".data('data')."/", true);                       
+            #Deve ser alterado o DIR_ORIGEM no topo do documento.
+            copiar_diretorio(DIR_ORIGEM, "./".DIR_DADOS."/".data('data')."/", true);
+            copiar_diretorio(DIR_ORIGEM, "./".DIR_DADOS."/".data('data')."/", true);                       
     
             dumpSQL();
     
