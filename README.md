@@ -1,5 +1,5 @@
 # BackuPHP
-BackuPHP -> Script para automatizar o Backup de Arquivos físicos de uma Aplicação Web, bem como criar um arquivo Dump com backup da estrutura de dados do BD. (Aconselhável MySQL).
+BackuPHP -> Script para automatizar o Backup de Arquivos físicos de uma Aplicação Web, bem como criar um arquivo Dump como backup da estrutura de dados do BD. (Aconselhável MySQL).
 
 # Configurações Iniciais (Index.php);
 
